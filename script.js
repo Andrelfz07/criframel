@@ -39,17 +39,29 @@ async function loadSongs() {
 }
 
 function transposeNote(note, semitones) {
-  const normalized = note.replace('Bb', 'A#');
+  const normalized = note.replace(/b$/, 'b').replace('Bb', 'A#');
   const index = noteNames.indexOf(normalized);
   return index < 0 ? note : noteNames[(index + semitones + 12) % 12];
+}
+function transposeChordLine(chord, semitones) {
+  return chord.replace(/[A-Ga-g](?:#|b)?/g, note => {
+    const accidental = note.endsWith('#') || note.endsWith('b') ? note.slice(-1) : '';
+    const natural = accidental ? note.slice(0, -1) : note;
+    const normalized = accidental === 'b' ? `${natural.toUpperCase()}b` : `${natural.toUpperCase()}${accidental}`;
+    const enharmonic = normalized.endsWith('b') ? { Db: 'C#', Eb: 'D#', Gb: 'F#', Ab: 'G#', Bb: 'A#' }[normalized] : normalized;
+    return transposeNote(enharmonic || normalized, semitones);
+  });
+}
+function keyRoot(key) {
+  return key.replace(/m$/, '');
 }
 function renderLyrics() {
   const selectedKey = document.querySelector('#key-select').value;
   const instrument = document.querySelector('#instrument-select').value;
-  const keyShift = noteNames.indexOf(selectedKey) - noteNames.indexOf(currentSong.key);
+  const keyShift = noteNames.indexOf(keyRoot(selectedKey)) - noteNames.indexOf(keyRoot(currentSong.key));
   const totalShift = keyShift + instrumentOffsets[instrument];
   document.querySelector('#lyrics-content').innerHTML = currentSong.melody.map(([chord, line]) => {
-    const notes = chord.split('  ').map(note => transposeNote(note, totalShift)).join('  ');
+    const notes = transposeChordLine(chord, totalShift);
     return `<div class="verse"><span class="chord">${notes}</span><span class="line">${line}</span></div>`;
   }).join('');
   const instrumentName = document.querySelector('#instrument-select').selectedOptions[0].textContent;
