@@ -59,14 +59,14 @@ function transposeNote(note, semitones) {
   
   if (index < 0) return note;
   
-  const transposed = noteNames[(index + semitones + 12) % 12];
+  const newIndex = (index + semitones + 12) % 12;
   
   // Se a nota original era bemol, retorna em formato bemol
   if (isFlat(note)) {
-    return bflatNames[(index + semitones + 12) % 12];
+    return bflatNames[newIndex];
   }
   
-  return transposed;
+  return noteNames[newIndex];
 }
 
 function transposeChordLine(chord, semitones) {
