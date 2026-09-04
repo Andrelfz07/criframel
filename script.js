@@ -5,6 +5,7 @@ let currentSong = songs[0];
 let currentFilter = 'recentes';
 let fontSize = 16;
 const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const bflatNames = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 const instrumentOffsets = { Flauta: 0, Gaita: 0, teclado: 0, violao: 0};
 const favoritesKey = 'ciframel-favorites';
 let favorites = new Set(JSON.parse(localStorage.getItem(favoritesKey) || '[]'));
@@ -40,7 +41,6 @@ async function loadSongs() {
 
 function normalizePitch(note) {
   const normalized = note.trim().toUpperCase().replace('♭', 'b').replace('♯', '#');
-  // Mapeamento de bemóis e sustenidos para posição no círculo cromático
   const normalizations = {
     'Db': 'C#', 'Eb': 'D#', 'Fb': 'E', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#',
     'CB': 'B', 'E#': 'F', 'B#': 'C'
@@ -48,10 +48,25 @@ function normalizePitch(note) {
   return normalizations[normalized] || normalized;
 }
 
+function isFlat(note) {
+  const normalized = note.trim().toUpperCase().replace('♭', 'b').replace('♯', '#');
+  return ['Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb', 'CB'].includes(normalized);
+}
+
 function transposeNote(note, semitones) {
   const normalized = normalizePitch(note);
   const index = noteNames.indexOf(normalized);
-  return index < 0 ? note : noteNames[(index + semitones + 12) % 12];
+  
+  if (index < 0) return note;
+  
+  const transposed = noteNames[(index + semitones + 12) % 12];
+  
+  // Se a nota original era bemol, retorna em formato bemol
+  if (isFlat(note)) {
+    return bflatNames[(index + semitones + 12) % 12];
+  }
+  
+  return transposed;
 }
 
 function transposeChordLine(chord, semitones) {
