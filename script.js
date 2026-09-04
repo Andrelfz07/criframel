@@ -84,10 +84,12 @@ function keyRoot(key) {
 }
 
 function filterKeyOptions() {
+  if (!currentSong || !currentSong.key) return; // Segurança: sair se currentSong não está pronto
+  
   const keySelect = document.querySelector('#key-select');
   const originalKeyIsMinor = isMinorKey(currentSong.key);
   
-  // Itera por todos os optgroups e opções
+  // Itera por todos as opções
   keySelect.querySelectorAll('option').forEach(option => {
     const optionKey = option.value;
     const optionIsMinor = isMinorKey(optionKey);
