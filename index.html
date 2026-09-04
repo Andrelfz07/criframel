@@ -1,24 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
-  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f8f5f0">
   <title>ciframel | Louvores ICM</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
-  <script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js");
-    });
-}
-</script>
-  
 <body>
   <header class="topbar">
     <a class="brand" href="#inicio" aria-label="ciframel início">ciframel<span>.</span></a>
@@ -83,7 +71,7 @@ if ("serviceWorker" in navigator) {
       <h2 id="dialog-title">Graça</h2>
       <p class="dialog-artist">Comunidade da Graça</p>
       <div class="controls">
-        <label>Tom <select id="key-select"><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>A</option><option>B</option></select></label>
+        <label>Tom <select id="key-select"><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>A</option><option>B</option><option>Bm</option></select></label>
         <label>Instrumento <select id="instrument-select"><option value="Flauta">Flauta</option><option value="Gaita">Gaita</option><option value="teclado">Teclado</option><option value="violao">violao</option></select></label>
         <button class="zoom-button" id="font-smaller" aria-label="Diminuir fonte">A−</button>
         <button class="zoom-button" id="font-larger" aria-label="Aumentar fonte">A+</button>
@@ -92,6 +80,6 @@ if ("serviceWorker" in navigator) {
       <article class="lyrics" id="lyrics-content"></article>
     </div>
   </dialog>
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
