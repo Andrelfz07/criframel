@@ -38,27 +38,28 @@ async function loadSongs() {
   }
 }
 
+function normalizePitch(note) {
+  const normalized = note.trim().toUpperCase().replace('♭', 'B').replace('♯', '#');
+  return { Db: 'C#', Eb: 'D#', Gb: 'F#', Ab: 'G#', Bb: 'A#' }[normalized] || normalized;
+}
 function transposeNote(note, semitones) {
-  const normalized = note.replace(/b$/, 'b').replace('Bb', 'A#');
-  const index = noteNames.indexOf(normalized);
+  const index = noteNames.indexOf(normalizePitch(note));
   return index < 0 ? note : noteNames[(index + semitones + 12) % 12];
 }
 function transposeChordLine(chord, semitones) {
   return chord.replace(/[A-Ga-g](?:#|b)?/g, note => {
-    const accidental = note.endsWith('#') || note.endsWith('b') ? note.slice(-1) : '';
-    const natural = accidental ? note.slice(0, -1) : note;
-    const normalized = accidental === 'b' ? `${natural.toUpperCase()}b` : `${natural.toUpperCase()}${accidental}`;
-    const enharmonic = normalized.endsWith('b') ? { Db: 'C#', Eb: 'D#', Gb: 'F#', Ab: 'G#', Bb: 'A#' }[normalized] : normalized;
-    return transposeNote(enharmonic || normalized, semitones);
+    return transposeNote(note, semitones);
   });
 }
 function keyRoot(key) {
-  return key.replace(/m$/, '');
+  return normalizePitch(key.replace(/m$/, ''));
 }
 function renderLyrics() {
   const selectedKey = document.querySelector('#key-select').value;
   const instrument = document.querySelector('#instrument-select').value;
-  const keyShift = noteNames.indexOf(keyRoot(selectedKey)) - noteNames.indexOf(keyRoot(currentSong.key));
+  const selectedIndex = noteNames.indexOf(keyRoot(selectedKey));
+  const originalIndex = noteNames.indexOf(keyRoot(currentSong.key));
+  const keyShift = selectedIndex - originalIndex;
   const totalShift = keyShift + instrumentOffsets[instrument];
   document.querySelector('#lyrics-content').innerHTML = currentSong.melody.map(([chord, line]) => {
     const notes = transposeChordLine(chord, totalShift);
