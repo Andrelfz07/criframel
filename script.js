@@ -53,6 +53,10 @@ function isFlat(note) {
   return ['Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb', 'CB'].includes(normalized);
 }
 
+function isMinorKey(key) {
+  return key.trim().endsWith('m');
+}
+
 function transposeNote(note, semitones) {
   const normalized = normalizePitch(note);
   const index = noteNames.indexOf(normalized);
@@ -79,6 +83,24 @@ function keyRoot(key) {
   return normalizePitch(key.replace(/m$/, ''));
 }
 
+function filterKeyOptions() {
+  const keySelect = document.querySelector('#key-select');
+  const originalKeyIsMinor = isMinorKey(currentSong.key);
+  
+  // Itera por todos os optgroups e opções
+  keySelect.querySelectorAll('option').forEach(option => {
+    const optionKey = option.value;
+    const optionIsMinor = isMinorKey(optionKey);
+    
+    // Mostra opção apenas se a modalidade (maior/menor) corresponder
+    if (originalKeyIsMinor === optionIsMinor) {
+      option.style.display = '';
+    } else {
+      option.style.display = 'none';
+    }
+  });
+}
+
 function renderLyrics() {
   const selectedKey = document.querySelector('#key-select').value;
   const instrument = document.querySelector('#instrument-select').value;
@@ -101,7 +123,7 @@ function renderSongs() {
     const matchesFilter = currentFilter === 'favoritos' ? favorites.has(song.title) : !currentFilter || song.tags.includes(currentFilter);
     return (!query || searchableText.includes(query)) && matchesFilter;
   });
-  list.innerHTML = visible.map(song => `<button class="song-card" data-index="${songs.indexOf(song)}"><span class="song-card-info"><span class="song-title">${song.title}</span><span class="song-meta">${song.artist}</span></span></button>`).join('');
+  list.innerHTML = visible.map(song => `<button class="song-card" data-index="${songs.indexOf(song)}"><span class="song-card-info"><span class="song-title">${song.title}</span><span class="song-m[...]
   document.querySelector('#result-count').textContent = `${visible.length} ${visible.length === 1 ? 'melodia' : 'melodias'}`;
   document.querySelector('#empty-state').hidden = visible.length > 0;
   document.querySelectorAll('.song-card').forEach(card => card.addEventListener('click', () => openSong(songs[card.dataset.index])));
@@ -113,14 +135,15 @@ function openSong(song) {
   document.querySelector('#dialog-category').textContent = song.category;
   document.querySelector('#favorite-dialog').textContent = favorites.has(song.title) ? '♥' : '♡';
   document.querySelector('#key-select').value = song.key;
+  filterKeyOptions();
   renderLyrics();
   dialog.showModal();
 }
 
 document.querySelector('#search-input').addEventListener('input', renderSongs);
-document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => { currentFilter = chip.dataset.filter; document.querySelectorAll('.chip').forEach(item => item.classList.toggle('active', item.dataset.filter === currentFilter)); renderSongs(); }));
-document.querySelector('#clear-filters').addEventListener('click', () => { currentFilter = ''; document.querySelectorAll('.chip').forEach(item => item.classList.remove('active')); renderSongs(); });
-document.querySelector('#reset-search').addEventListener('click', () => { document.querySelector('#search-input').value = ''; currentFilter = ''; document.querySelectorAll('.chip').forEach(item => item.classList.remove('active')); renderSongs(); });
+document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => { currentFilter = chip.dataset.filter; document.querySelectorAll('.chip').forEach(item => item.classList.to[...]
+document.querySelector('#clear-filters').addEventListener('click', () => { currentFilter = ''; document.querySelectorAll('.chip').forEach(item => item.classList.remove('active')); renderSongs(); [...]
+document.querySelector('#reset-search').addEventListener('click', () => { document.querySelector('#search-input').value = ''; currentFilter = ''; document.querySelectorAll('.chip').forEach(item =[...]
 document.querySelector('#close-dialog').addEventListener('click', () => dialog.close());
 document.querySelector('#favorite-dialog').addEventListener('click', event => {
   if (favorites.has(currentSong.title)) favorites.delete(currentSong.title);
@@ -145,6 +168,6 @@ document.querySelector('a[href="#favoritos"]').addEventListener('click', event =
   renderSongs();
   document.querySelector('#songs-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
-document.addEventListener('keydown', event => { if (event.key === '/' && document.activeElement.tagName !== 'INPUT') { event.preventDefault(); document.querySelector('#search-input').focus(); } });
+document.addEventListener('keydown', event => { if (event.key === '/' && document.activeElement.tagName !== 'INPUT') { event.preventDefault(); document.querySelector('#search-input').focus(); } }[...]
 setTheme(localStorage.getItem('ciframel-theme') === 'dark');
 loadSongs();
