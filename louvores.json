@@ -8,8 +8,8 @@
     "melody": [
       ["A D E F# , F# E D C# A", "De tantas coisas que andei fazendo,"],
       ["C# D C# B G, G D B A", "de quase todas me arrependi."],
-      ["D E F# A , -d Db c- , D A B A G , - g a a# a g-", "Mas houve uma especial"],
-      ["D G B B A, F# E F# D, - e f# g f# e d", "Foi a mais certa que escolhi."],
+      ["D E F# A (D Db C) , D A B A G (G A A# A G)", "Mas houve uma especial"],
+      ["D G B B A, F# E F# D ( E F# G F# E D)", "Foi a mais certa que escolhi."],
       ["", "CORO"],
       ["D F# A B A, A F# A B", "A melhor coisa que eu já fiz"],
       ["F# G A A G A G, G F# D E F# E", "em toda a minha vida por isso sou feliz."],
@@ -18,12 +18,13 @@
 
       ["A D E F# , F# E D C# A", "Coisas erradas andei fazendo"],
       ["C# D C# B G, G D B A", "na condição de pecador."],
-      ["D E F# A , -d Db c- , D A B A G , - g a a# a g-", "Mas quando achei-me desfalecendo"],
-      ["D G B B A, F# E F# D, - e f# g f# e d", "Tomei a decisão que me salvou"],
+      ["D E F# A (D Db C) , D A B A G (G A A# A G)", "Mas quando achei-me desfalecendo"],
+      ["D G B B A, F# E F# D ( E F# G F# E D)", "Tomei a decisão que me salvou"],
       ["", "CORO 2X"],
+      ["", "FINAL"],
       ["B C# D D A, A E F# D", "A melhor coisa que eu já fiz."],
       ["","(possivel finalização -menor-)"],
-      ["- g a a# a g-", ""]
+      ["(G A A# A G)", ""]
     ]
 },
 
