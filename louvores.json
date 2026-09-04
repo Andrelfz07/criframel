@@ -1,0 +1,54 @@
+[
+  {
+    "title": "A melhor coisa",
+    "artist": "-",
+    "key": "D",
+    "category": "Adoração",
+    "tags": [ "calmos", "recentes"],
+    "melody": [
+      ["A D E F# , F# E D C# A", "De tantas coisas que andei fazendo,"],
+      ["C# D C# B G, G D B A", "de quase todas me arrependi."],
+      ["D E F# A , -d Db c- , D A B A G , - g a a# a g-", "Mas houve uma especial"],
+      ["D G B B A, F# E F# D, - e f# g f# e d", "Foi a mais certa que escolhi."],
+      ["", "CORO"],
+      ["D F# A B A, A F# A B", "A melhor coisa que eu já fiz"],
+      ["F# G A A G A G, G F# D E F# E", "em toda a minha vida por isso sou feliz."],
+      ["E F# G B A A, A F# D C# B D", "Em aceitar Jesus sinceramente foi,"],
+      ["B C# D D A, A E F# D", "A melhor coisa que eu já fiz."],
+
+      ["A D E F# , F# E D C# A", "Coisas erradas andei fazendo"],
+      ["C# D C# B G, G D B A", "na condição de pecador."],
+      ["D E F# A , -d Db c- , D A B A G , - g a a# a g-", "Mas quando achei-me desfalecendo"],
+      ["D G B B A, F# E F# D, - e f# g f# e d", "Tomei a decisão que me salvou"],
+      ["", "CORO 2X"],
+      ["B C# D D A, A E F# D", "A melhor coisa que eu já fiz."],
+      ["","(possivel finalização -menor-)"],
+      ["- g a a# a g-", ""]
+    ]
+},
+
+  {
+    "title": "Ageu",
+    "artist": "-",
+    "key": "Bm",
+    "category": "Adoração",
+    "tags": [ "calmos", "recentes" ],
+    "melody": [
+      ["", "Ainda uma vez, daqui a pouco"],
+      ["", "E farei tremer os céus,"],
+      ["", "E toda a terra, todo mar e a terra seca"],
+      ["", "Farei tremer nações, e enfim virá"],
+      ["", "O Desejado das nações"],
+      ["", "CORO"],
+      ["  " , "E eu encherei assimm este lugar | (eu encherei)"],
+      ["  " , "Com minha glória encherei esste lugar | (este lugar)"],
+      ["  " , "Diz o Senhor dos Exércitos | (Diz o Senhor)"],
+      [" " , "Diz o Senhor | (dos exercitos - na segunda vez)"],
+      [" " , "Minha é a prata"],
+      [" " , "E meu ouro assim diz o Senhor"],
+      [" " , "E a gloria desta casa em mim excederá"],
+      [" " , "A glória da primeira"],
+      [" " , "E neste lugar"],
+      [" " , "Darei a minha paz"]
+    ]
+} ]

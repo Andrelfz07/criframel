@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5f0">
+  <title>ciframel | Louvores ICM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="ciframel início">ciframel<span>.</span></a>
+    <div class="header-actions">
+      <button class="icon-button" aria-label="Alternar tema" title="Alternar tema" id="theme-toggle">◐</button>
+      <button class="profile-button" aria-label="Abrir perfil">AM</button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="welcome-section" aria-labelledby="page-title">
+      <div class="eyebrow"><span class="live-dot"></span> Louvores ICM</div>
+      <h1 id="page-title">ciframel<span class="title-mark">.</span></h1>
+      <p class="intro">“Cantai ao Senhor um cântico novo; cantai ao Senhor, todas as terras.”<br><span class="verse-reference">Salmos 96:1</span></p>
+      <label class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" id="search-input" placeholder="Buscar por título ou trecho..." autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+    </section>
+
+    <section class="quick-section" aria-labelledby="quick-title">
+      <div class="section-heading">
+        <h2 id="quick-title">Acesso rápido</h2>
+        <button class="text-button" id="clear-filters">Limpar</button>
+      </div>
+      <div class="chip-row" role="group" aria-label="Filtros rápidos">
+        <button class="chip active" data-filter="recentes">Recentes</button>
+        <button class="chip" data-filter="favoritos">♡ Favoritos</button>
+        <button class="chip" data-filter="calmos">Calmos</button>
+        <button class="chip" data-filter="celebracao">Celebração</button>
+      </div>
+    </section>
+
+    <section class="songs-section" aria-labelledby="songs-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="songs-title">Todos os louvores</h2>
+          <p class="result-count" id="result-count">12 melodias</p>
+        </div>
+        <button class="sort-button" aria-label="Ordenar lista" title="Ordenar lista">↕</button>
+      </div>
+      <div class="song-list" id="song-list"></div>
+      <p class="empty-state" id="empty-state" hidden>Nenhum louvor encontrado.<br><button class="text-button" id="reset-search">Ver todos</button></p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegação principal">
+    <a class="nav-item active" href="#inicio"><span>⌂</span><small>Início</small></a>
+    <a class="nav-item" href="#favoritos"><span>♡</span><small>Favoritos</small></a>
+    <a class="nav-item" href="#colecoes"><span>▤</span><small>Coleções</small></a>
+  </nav>
+
+  <dialog class="song-dialog" id="song-dialog">
+    <div class="dialog-header">
+      <button class="icon-button" id="close-dialog" aria-label="Fechar">←</button>
+      <span class="dialog-label">LETRA E MELODIA</span>
+      <button class="icon-button" id="favorite-dialog" aria-label="Favoritar">♡</button>
+    </div>
+    <div class="dialog-content">
+      <p class="eyebrow">LOUVOR ICM · <span id="dialog-category">ADORAÇÃO</span></p>
+      <h2 id="dialog-title">Graça</h2>
+      <p class="dialog-artist">Comunidade da Graça</p>
+      <div class="controls">
+        <label>Tom <select id="key-select"><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>A</option><option>B</option></select></label>
+        <label>Instrumento <select id="instrument-select"><option value="Flauta">Flauta</option><option value="Gaita">Gaita</option><option value="teclado">Teclado</option><option value="violao">violao</option></select></label>
+        <button class="zoom-button" id="font-smaller" aria-label="Diminuir fonte">A−</button>
+        <button class="zoom-button" id="font-larger" aria-label="Aumentar fonte">A+</button>
+      </div>
+      <div class="notation-note" id="notation-note"><span>♪</span> As notas são exibidas na tonalidade selecionada</div>
+      <article class="lyrics" id="lyrics-content"></article>
+    </div>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
