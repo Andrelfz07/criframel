@@ -20,7 +20,7 @@
     <section class="welcome-section" aria-labelledby="page-title">
       <div class="eyebrow"><span class="live-dot"></span> Louvores ICM</div>
       <h1 id="page-title">ciframel<span class="title-mark">.</span></h1>
-      <p class="intro">“Cantai ao Senhor um cântico novo; cantai ao Senhor, todas as terras.”<br><span class="verse-reference">Salmos 96:1</span></p>
+      <p class="intro">"Cantai ao Senhor um cântico novo; cantai ao Senhor, todas as terras."<br><span class="verse-reference">Salmos 96:1</span></p>
       <label class="search-box">
         <span aria-hidden="true">⌕</span>
         <input type="search" id="search-input" placeholder="Buscar por título ou trecho..." autocomplete="off">
@@ -71,8 +71,50 @@
       <h2 id="dialog-title">Graça</h2>
       <p class="dialog-artist">Comunidade da Graça</p>
       <div class="controls">
-        <label>Tom <select id="key-select"><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>A</option><option>B</option><option>Bm</option></select></label>
-        <label>Instrumento <select id="instrument-select"><option value="Flauta">Flauta</option><option value="Gaita">Gaita</option><option value="teclado">Teclado</option><option value="violao">violao</option></select></label>
+        <label>Tom <select id="key-select">
+          <optgroup label="Maiores">
+            <option>C</option>
+            <option>Cb</option>
+            <option>C#</option>
+            <option>D</option>
+            <option>Db</option>
+            <option>D#</option>
+            <option>E</option>
+            <option>Eb</option>
+            <option>F</option>
+            <option>Fb</option>
+            <option>F#</option>
+            <option>G</option>
+            <option>Gb</option>
+            <option>G#</option>
+            <option>A</option>
+            <option>Ab</option>
+            <option>A#</option>
+            <option>B</option>
+            <option>Bb</option>
+          </optgroup>
+          <optgroup label="Menores">
+            <option>Cm</option>
+            <option>C#m</option>
+            <option>Dm</option>
+            <option>Dbm</option>
+            <option>D#m</option>
+            <option>Em</option>
+            <option>Ebm</option>
+            <option>Fm</option>
+            <option>F#m</option>
+            <option>Fbm</option>
+            <option>Gm</option>
+            <option>Gbm</option>
+            <option>G#m</option>
+            <option>Am</option>
+            <option>Abm</option>
+            <option>A#m</option>
+            <option>Bm</option>
+            <option>Bbm</option>
+          </optgroup>
+        </select></label>
+        <label>Instrumento <select id="instrument-select"><option value="Flauta">Flauta</option><option value="Gaita">Gaita</option><option value="teclado">Teclado</option><option value="violao">Violão</option></select></label>
         <button class="zoom-button" id="font-smaller" aria-label="Diminuir fonte">A−</button>
         <button class="zoom-button" id="font-larger" aria-label="Aumentar fonte">A+</button>
       </div>
@@ -80,6 +122,6 @@
       <article class="lyrics" id="lyrics-content"></article>
     </div>
   </dialog>
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
