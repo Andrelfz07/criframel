@@ -39,21 +39,31 @@ async function loadSongs() {
 }
 
 function normalizePitch(note) {
-  const normalized = note.trim().toUpperCase().replace('♭', 'B').replace('♯', '#');
-  return { Db: 'C#', Eb: 'D#', Gb: 'F#', Ab: 'G#', Bb: 'A#' }[normalized] || normalized;
+  const normalized = note.trim().toUpperCase().replace('♭', 'b').replace('♯', '#');
+  // Mapeamento de bemóis e sustenidos para posição no círculo cromático
+  const normalizations = {
+    'Db': 'C#', 'Eb': 'D#', 'Fb': 'E', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#',
+    'CB': 'B', 'E#': 'F', 'B#': 'C'
+  };
+  return normalizations[normalized] || normalized;
 }
+
 function transposeNote(note, semitones) {
-  const index = noteNames.indexOf(normalizePitch(note));
+  const normalized = normalizePitch(note);
+  const index = noteNames.indexOf(normalized);
   return index < 0 ? note : noteNames[(index + semitones + 12) % 12];
 }
+
 function transposeChordLine(chord, semitones) {
-  return chord.replace(/[A-Ga-g](?:#|b)?/g, note => {
+  return chord.replace(/[A-Ga-g](?:#|b|♯|♭)?(?:\([^)]*\))?/g, note => {
     return transposeNote(note, semitones);
   });
 }
+
 function keyRoot(key) {
   return normalizePitch(key.replace(/m$/, ''));
 }
+
 function renderLyrics() {
   const selectedKey = document.querySelector('#key-select').value;
   const instrument = document.querySelector('#instrument-select').value;
@@ -76,11 +86,12 @@ function renderSongs() {
     const matchesFilter = currentFilter === 'favoritos' ? favorites.has(song.title) : !currentFilter || song.tags.includes(currentFilter);
     return (!query || searchableText.includes(query)) && matchesFilter;
   });
-  list.innerHTML = visible.map(song => `<button class="song-card" data-index="${songs.indexOf(song)}"><span class="song-card-info"><span class="song-title">${song.title}</span><span class="song-meta">${song.artist} · ${song.category}</span></span><span class="song-key">${song.key}</span></button>`).join('');
+  list.innerHTML = visible.map(song => `<button class="song-card" data-index="${songs.indexOf(song)}"><span class="song-card-info"><span class="song-title">${song.title}</span><span class="song-meta">${song.artist}</span></span></button>`).join('');
   document.querySelector('#result-count').textContent = `${visible.length} ${visible.length === 1 ? 'melodia' : 'melodias'}`;
   document.querySelector('#empty-state').hidden = visible.length > 0;
   document.querySelectorAll('.song-card').forEach(card => card.addEventListener('click', () => openSong(songs[card.dataset.index])));
 }
+
 function openSong(song) {
   currentSong = song;
   document.querySelector('#dialog-title').textContent = song.title;
@@ -90,8 +101,9 @@ function openSong(song) {
   renderLyrics();
   dialog.showModal();
 }
+
 document.querySelector('#search-input').addEventListener('input', renderSongs);
-document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => { currentFilter = chip.dataset.filter; document.querySelectorAll('.chip').forEach(item => item.classList.toggle('active', item === chip)); renderSongs(); }));
+document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => { currentFilter = chip.dataset.filter; document.querySelectorAll('.chip').forEach(item => item.classList.toggle('active', item.dataset.filter === currentFilter)); renderSongs(); }));
 document.querySelector('#clear-filters').addEventListener('click', () => { currentFilter = ''; document.querySelectorAll('.chip').forEach(item => item.classList.remove('active')); renderSongs(); });
 document.querySelector('#reset-search').addEventListener('click', () => { document.querySelector('#search-input').value = ''; currentFilter = ''; document.querySelectorAll('.chip').forEach(item => item.classList.remove('active')); renderSongs(); });
 document.querySelector('#close-dialog').addEventListener('click', () => dialog.close());
