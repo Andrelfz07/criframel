@@ -15,7 +15,6 @@
       ["F# G A A G A G , G F# D E F# E", "em toda a minha vida por isso sou feliz."],
       ["E F# G B A A , A F# D C# B D", "Em aceitar Jesus sinceramente foi,"],
       ["B C# D D A , A E F# D", "A melhor coisa que eu já fiz."],
-
       ["A D E F# F# , F# E D C# A", "Coisas erradas andei fazendo"],
       ["C# D C# B G , G D B A", "na condição de pecador."],
       ["D E F# A (D C# C) | D A B A G (G A A# A G)", "Mas quando achei-me desfalecendo"],
@@ -26,15 +25,14 @@
       ["","(possivel finalização -menor-)"],
       ["(G A A# A G)", ""]
     ]
-},
-
+  },
   {
     "title": "Ageu",
     "artist": "-",
     "key": "Bm",
     "category": "Adoração",
     "tags": [ "calmos", "recentes" ],
-    "melody": [],
+    "melody": [
       ["","INTRO"],
       ["B C# D F# B | B C# D F# E", ""],
       [" E F# G G G F# F# E F# , F# G F# E D C# B", ""],
@@ -51,4 +49,6 @@
       [" B B F# F# E F# , G G F# F# E E D A E E D E" , "Minha é a prata, E meu ouro assim diz o Senhor"],
       [" F# F# E E D D C# G D D C# D D C# G G D D C# D" , "E a gloria desta casa em mim excederá a glória da primeira"],
       [" A E E D E | E F# G F# G F# G F# G F# (F# G F# E D C# B)" , "E neste lugar, darei a minha paz"]
-} ]
+    ]
+  }
+]
