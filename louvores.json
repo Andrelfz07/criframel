@@ -1,5 +1,6 @@
 [
   {
+    "number": 1,
     "title": "A melhor coisa",
     "artist": "-",
     "key": "D",
@@ -27,6 +28,7 @@
     ]
   },
   {
+    "number": 2,
     "title": "Ageu",
     "artist": "-",
     "key": "Bm",
