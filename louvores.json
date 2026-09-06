@@ -36,12 +36,12 @@
     "tags": [ "calmos", "recentes" ],
     "melody": [],
       ["","INTRO"],
-      ["B C# D F# B , B C# D F# E", ""],
+      ["B C# D F# B | B C# D F# E", ""],
       [" E F# G G G F# F# E F# , F# G F# E D C# B", ""],
-      ["B B F# F# E F# , G G F# F# E ", "Ainda uma vez, daqui a pouco"],
+      ["B B F# F# E F# | G G F# F# E ", "Ainda uma vez, daqui a pouco"],
       ["E D A E E D E", "E farei tremer os céus,"],
       ["F# F# E E D D C# G D D C# D D", "E toda a terra, todo mar e a terra seca"],
-      ["G G D D C# D , A E E D E", "Farei tremer nações, e enfim virá"],
+      ["G G D D C# D | A E E D E", "Farei tremer nações, e enfim virá"],
       ["E F# G F# G F# G F# G F# (F# G F# E D C# B)", "O Desejado das nações"],
       ["", "CORO"],
       [" B F# F# E F# A A G G F# G ( D C#) " , "E eu encherei assimm este lugar (eu encherei)"],
@@ -50,6 +50,5 @@
       [" E E D D C# " , "Diz o Senhor (dos exercitos - na segunda vez)"],
       [" B B F# F# E F# , G G F# F# E E D A E E D E" , "Minha é a prata, E meu ouro assim diz o Senhor"],
       [" F# F# E E D D C# G D D C# D D C# G G D D C# D" , "E a gloria desta casa em mim excederá a glória da primeira"],
-      [" A E E D E , E F# G F# G F# G F# G F# (F# G F# E D C# B)" , "E neste lugar, darei a minha paz"],
-    ]
+      [" A E E D E | E F# G F# G F# G F# G F# (F# G F# E D C# B)" , "E neste lugar, darei a minha paz"],
 } ]
