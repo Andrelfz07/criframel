@@ -21,6 +21,7 @@ function setTheme(isDark) {
 function normalizeText(value) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 }
+
 function saveFavorites() {
   localStorage.setItem(favoritesKey, JSON.stringify([...favorites]));
 }
@@ -119,11 +120,11 @@ function renderLyrics() {
 function renderSongs() {
   const query = normalizeText(document.querySelector('#search-input').value);
   const visible = songs.filter(song => {
-    const searchableText = normalizeText(`${song.title} ${song.artist} ${song.category} ${song.melody.flat().join(' ')}`);
+    const searchableText = normalizeText(`${song.number} ${song.title} ${song.artist} ${song.category} ${song.melody.flat().join(' ')}`);
     const matchesFilter = currentFilter === 'favoritos' ? favorites.has(song.title) : !currentFilter || song.tags.includes(currentFilter);
     return (!query || searchableText.includes(query)) && matchesFilter;
   });
-  list.innerHTML = visible.map(song => `<button class="song-card" data-index="${songs.indexOf(song)}"><span class="song-card-info"><span class="song-title">${song.title}</span><span class="song-meta">${song.artist} · ${song.category}</span></span><span class="song-key">${song.key}</span></button>`).join('');
+  list.innerHTML = visible.map(song => `<button class="song-card" data-index="${songs.indexOf(song)}"><span class="song-number">${String(song.number).padStart(2, '0')}</span><span class="song-card-info"><span class="song-title">${song.title}</span><span class="song-meta">${song.category} · [${song.key}]</span></span><span class="song-key">${song.key}</span></button>`).join('');
   document.querySelector('#result-count').textContent = `${visible.length} ${visible.length === 1 ? 'melodia' : 'melodias'}`;
   document.querySelector('#empty-state').hidden = visible.length > 0;
   document.querySelectorAll('.song-card').forEach(card => card.addEventListener('click', () => openSong(songs[card.dataset.index])));
@@ -141,7 +142,7 @@ function openSong(song) {
 }
 
 document.querySelector('#search-input').addEventListener('input', renderSongs);
-document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => { currentFilter = chip.dataset.filter; document.querySelectorAll('.chip').forEach(item => item.classList.toggle('active', item.dataset.filter === currentFilter)); renderSongs(); }));
+document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => { currentFilter = chip.dataset.filter; document.querySelectorAll('.chip').forEach(item => item.classList.toggle('active', item.data-filter === currentFilter)); renderSongs(); }));
 document.querySelector('#clear-filters').addEventListener('click', () => { currentFilter = ''; document.querySelectorAll('.chip').forEach(item => item.classList.remove('active')); renderSongs(); });
 document.querySelector('#reset-search').addEventListener('click', () => { document.querySelector('#search-input').value = ''; currentFilter = ''; document.querySelectorAll('.chip').forEach(item => item.classList.remove('active')); renderSongs(); });
 document.querySelector('#close-dialog').addEventListener('click', () => dialog.close());
