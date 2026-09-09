@@ -120,9 +120,6 @@ function renderLyrics() {
 function renderSongs() {
   const query = normalizeText(document.querySelector('#search-input').value);
   const visible = songs.filter(song => {
-    const searchableText = normalizeText(`${song.number} ${song.title} ${song.artist} ${song.category} ${song.melody.flat().join(' ')}`);
-    const matchesFilter = currentFilter === 'favoritos' ? favorites.has(song.title) : !currentFilter || song.tags.includes(currentFilter);
-    return (!query || searchableText.includes(query)) && matchesFilter;
   });
   list.innerHTML = visible.map(song => `<button class="song-card" data-index="${songs.indexOf(song)}"><span class="song-number">${String(song.number).padStart(2, '0')}</span><span class="song-card-info"><span class="song-title">${song.title}</span><span class="song-meta">${song.category} · [${song.key}]</span></span><span class="song-key">${song.key}</span></button>`).join('');
   document.querySelector('#result-count').textContent = `${visible.length} ${visible.length === 1 ? 'melodia' : 'melodias'}`;
