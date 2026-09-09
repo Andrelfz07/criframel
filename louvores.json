@@ -59,8 +59,8 @@
   "number": 15,
   "title": "Alto Preço",
   "artist": "-",
-  "key": "",
-  "category": "F#m",
+  "key": "F#m",
+  "category": "",
   "tags": ["adoração", "unidade"],
   "melody": [
     ["", "INTRO"],
